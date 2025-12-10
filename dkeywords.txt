@@ -1,726 +1,551 @@
-intext:"DB_PASSWORD" ext:env
-intext:"DB_USERNAME" ext:env
-intext:"MYSQL_ROOT_PASSWORD" ext:env | ext:yml
-intext:"AWS_ACCESS_KEY_ID" ext:env | ext:yml | ext:json
-intext:"AWS_SECRET_ACCESS_KEY" ext:env | ext:yml
-intext:"PRIVATE_KEY" | "RSA PRIVATE KEY" | "BEGIN RSA PRIVATE KEY"
-intext:"-----BEGIN OPENSSH PRIVATE KEY-----"
-intext:"BEGIN EC PRIVATE KEY"
-intext:"BEGIN PRIVATE KEY" ext:pem
-intext:"wallet.dat" | "wallet backup"
-intext:"mnemonic" | "seed phrase" | "12 words" | "24 words"
-intext:"bip39" | "bip44" | "recovery phrase"
-intext:"api_key" | "api_secret" | "secret_key"
-intext:"stripe_secret" | "sk_live_"
-intext:"paypal_client_id" | "paypal_secret"
-intext:"ghp_" | "gho_" | "github_pat"
-intext:"AKIA[0-9A-Z]{16}"
-intext:"xoxb-" | "xoxp-" slack
-intext:"bot user oauth" slack
-intext:"EAACEdEos0" facebook
-intext:"ya29." google oauth
-intext:"1/0" google refresh token
-inurl:wp-config.php.bak | wp-config.php~
-inurl:wp-config.php.txt | .env.bak
-inurl:.env "DB_PASSWORD"
-inurl:phpinfo.php | inurl:info.php
-inurl:adminer.php | inurl:admin.php
-inurl:.git/config | inurl:.git/HEAD
-inurl:.gitignore password
-inurl:.DS_Store
-inurl:backup intitle:"index of"
-intitle:"index of" .env
-intitle:"index of" backup
-intitle:"index of" wp-admin
-intitle:"index of" "database.sql"
-filetype:sql "INSERT INTO" "users"
-filetype:sql "password" | "admin"
-filetype:bak | filetype:old | filetype:~ 
+"BEGIN PUTTY PRIVATE KEY FILE"
+"Brave" "Login Data" filetype:bak
+"Outlook" filetype:xml intext:SmtpServer
+"Username: test" "Password: test" inurl:login
+cache:"login" | cache:"admin"
+filetype:bak | filetype:old | filetype:~
 filetype:env "APP_KEY"
-filetype:yml "password:"
+filetype:env "APP_KEY" | "SECRET_KEY"
+filetype:env "app_key"
 filetype:json "private_key"
-filetype:txt "password"
-filetype:log "password"
-filetype:pem "PRIVATE KEY"
+filetype:json intext:"logins.json" "password"
+filetype:ovpn "auth-user-pass"
+filetype:pst "password"
+filetype:sql "INSERT INTO users"
+filetype:sql "insert into users"
+filetype:sql "password"
+filetype:sql "password" | "admin"
+filetype:sqlite intext:"signons" "password"
+filetype:txt "BEGIN PGP PRIVATE KEY BLOCK"
+intext:" @gmail.com" ext:txt
+intext:"-----begin openssh private key-----"
+intext:"AKIA[0-9A-Z]{16}" aws
+intext:"AWS_ACCESS_KEY_ID" | "AKIA"
+intext:"AWS_ACCESS_KEY_ID" | "AWS_SECRET_ACCESS_KEY"
+intext:"BEGIN OPENSSH PRIVATE KEY"
+intext:"BEGIN RSA PRIVATE KEY"
+intext:"BEGIN RSA PRIVATE KEY" | "BEGIN OPENSSH PRIVATE KEY"
+intext:"DB_PASSWORD" ext:env
+intext:"EAAG" facebook
+intext:"FileZilla" "Pass:" filetype:xml
+intext:"SG." sendgrid
+intext:"[Thunderbird]" "signons.sqlite"
+intext:"across" protocol key
+intext:"airgap" vault
+intext:"akamai" token
+intext:"akash" network seed
+intext:"akia[0-9a-z]{16}" aws
+intext:"alby" wallet seed
+intext:"alchemy" solana key
+intext:"alephium" seed
+intext:"alibaba" accesskeyid
+intext:"allbridge" key
+intext:"allthatnode" solana key
+intext:"ambire" wallet
+intext:"anchor" keys
+intext:"ankr" solana key
+intext:"anyswap" key
+intext:"api_key" | "secret_key"
+intext:"api_key" | "secret_key" | "client_secret"
+intext:"aplus-am.com" "webmail" "password"
+intext:"aqua" wallet seed
+intext:"arbitrum" nova seed
+intext:"archos" safe-t
+intext:"argent" wallet
+intext:"ascendex" key
+intext:"auth0" secret
+intext:"avalanche" core seed
+intext:"aws_access_key_id"
+intext:"aws_access_key_id" | "aws_secret_access_key"
+intext:"aws_session_token"
+intext:"axelar" seed
+intext:"backpack" seed
+intext:"backpack" wallet seed
+intext:"base" coinbase l2 seed
+intext:"begin openssh private key"
+intext:"begin rsa private key"
+intext:"berachain" bera seed
+intext:"bigone" key
+intext:"binance" th key
+intext:"binance" wallet seed
+intext:"bisq" 2 key
+intext:"bisq" key
+intext:"bitazza" key
+intext:"bitbox" seed
+intext:"bitbox02" seed
+intext:"bitcoin address" "private key"
+intext:"bitcoin" lightning node key
+intext:"bitcoin.co.id" key
+intext:"bitfi" seed
+intext:"bitget" global key
+intext:"bitkeep" solana seed
+intext:"bitkub" key
+intext:"bitkub" th key
+intext:"bitlox" seed
+intext:"bitrue" key
+intext:"blast" l2 seed
+intext:"blink" wallet seed
+intext:"blockchain.com" wallet
+intext:"blockdaemon" solana key
+intext:"blockstream" green
+intext:"blockstream" jade
+intext:"bluewallet" seed
+intext:"blur" eth key
+intext:"boltz" exchange key
+intext:"braintree" private_key
+intext:"breez" wallet seed
+intext:"bt.io" key
+intext:"btcpay" server key
+intext:"bunnycdn" key
+intext:"busha" nigeria key
+intext:"cakewallet" monero seed
+intext:"caravan" multisig
+intext:"cargo" toml solana
+intext:"cash" app lightning key
+intext:"cash.app"
+intext:"cash.app" 
+intext:"cbridge" celer key
+intext:"celestia" seed
+intext:"chainport" key
+intext:"chainstack" solana key
+intext:"changehero" key
+intext:"changelly" key
+intext:"changenow" key
+intext:"chivo" wallet seed
+intext:"chrome" "login data" filetype:sql
+intext:"cipher" key
+intext:"cloudflare_api_token"
+intext:"cloudinary://"
+intext:"cloudinary://" | "s3.amazonaws.com" bucket
+intext:"cobo" vault
+intext:"coin98" solana seed
+intext:"coinomi" seed
+intext:"coldcard" mk4
+intext:"coldcard" seed
+intext:"conceal" seed
+intext:"connext" network key
+intext:"cookie_secret"
+intext:"coolwallet" seed
+intext:"cosmos" hub seed
+intext:"cypherock" seed
+intext:"d'cent" biometric
+intext:"db_password" ext:env
+intext:"debug.keystore"
+intext:"default password" filetype:pdf
+intext:"digitalocean" token
+intext:"discord webhook | slack webhook | telegram bot token
+intext:"discord" webhook
+intext:"dydx" cosmos seed
+intext:"eaag" facebook
+intext:"eastasia-tech.com" "customer login"
+intext:"electrum" seed
+intext:"electrum" wallet seed
+intext:"ellipal" seed
+intext:"ellipal" titan
+intext:"encryption_key"
+intext:"ergo" seed
+intext:"ethereum" "0x" "private key"
+intext:"exch" cx key
+intext:"exodus" seed
+intext:"exodus" solana seed
+intext:"expo" token
+intext:"fantom" opera seed
+intext:"fastly" token
+intext:"feather" wallet monero seed
+intext:"figment" solana key
+intext:"firebase" config
+intext:"fixedfloat" key
+intext:"flutter" key
+intext:"flux" seed
+intext:"foundation" passport
+intext:"fully nodl" seed
+intext:"gate" io key
+intext:"getblock" solana key
+intext:"ghp_" github
+intext:"ghp_" github_pat
+intext:"ghp_" | "github_pat"
+intext:"gnosis" safe
+intext:"godex" key
+intext:"gradle.properties"
+intext:"greenaddress" seed
+intext:"gridplus" lattice
+intext:"guarda" seed
+intext:"guarda" tron seed
+intext:"harmony" one seed
+intext:"haveno" key
+intext:"haveno" monero key
+intext:"hcaptcha" secret
+intext:"helius" rpc key
+intext:"helius" | "alchemy" | "quicknode" rpc key
+intext:"herokuapp.com" password
+intext:"hisaka-thai.com" intitle:"webmail"
+intext:"hodlhodl" key
+intext:"hop" protocol key
+intext:"hubspot" api key
+intext:"hush" seed
+intext:"hyperliquid" l1 seed
+intext:"id.json" solana
+intext:"immutable" x key
+intext:"indodax" key
+intext:"injective" protocol seed
+intext:"ironfish" seed
+intext:"jaxx" seed
+intext:"joinmarket" key
+intext:"juno" network seed
+intext:"jupiter" aggregator key
+intext:"jupiter" aggregator seed
+intext:"just" swap key
+intext:"jwt_secret"
+intext:"kadena" kda seed
+intext:"kaspa" seed
+intext:"keepkey" seed
+intext:"kewaunee.in" "employee portal"
+intext:"keystone" pro
+intext:"keystone" seed
+intext:"keystore" password
+intext:"keystore.json"
+intext:"keystore.json" password
+intext:"klever" wallet seed
+intext:"komodo" seed
+intext:"krux" wallet
+intext:"lava" solana key
+intext:"layerzero" key
+intext:"lbank" key
+intext:"ledger live" seed
+intext:"ledger" nano x
+intext:"ledger" seed
+intext:"letsexchange" key
+intext:"lido" solana key
+intext:"lily" wallet
+intext:"linea" consensys seed
+intext:"linode" token
+intext:"lnbits" key
+intext:"lnd" wallet seed
+intext:"lndhub" key
+intext:"local" monero key
+intext:"local.properties"
+intext:"localmonero" key
+intext:"loopring" l2 key
+intext:"luno" africa key
+intext:"magic eden" api key
+intext:"magic eden" | "opensea" | "blur" api key
+intext:"mailchimp" api key
+intext:"mailgun" key
+intext:"majestic" bank key
+intext:"mathwallet" solana seed
+intext:"mayachain" seed
+intext:"mediksoft.com.my" filetype:sql dump
+intext:"metamask" seed
+intext:"metamask" vault data
+intext:"metamask" | "phantom" | "ledger" | "trezor" seed
+intext:"mexc" global key
+intext:"minebeamitsumi.com" "procurement" login
+intext:"mnemonic" | "12 words" | "24 words"
+intext:"mnemonic" | "seed phrase" | "12 words" | "24 words"
+intext:"mode" network seed
+intext:"monero" address private key
+intext:"monero" p2p key
+intext:"monero" spend key
+intext:"monero" view key
+intext:"monerujo" monero seed
+intext:"multichain" key
+intext:"muun" wallet seed
+intext:"my monero" com seed
+intext:"my node" seed
+intext:"myetherwallet" keystore
+intext:"nervos" ckb seed
+intext:"nexmo" key
+intext:"ngrave" zero
+intext:"nonkyc" exchange key
+intext:"noones" p2p key
+intext:"nym" mixnet key
+intext:"nym" nymnet key
+intext:"nym" operator key
+intext:"okta" token
+intext:"onekey" pro
+intext:"onesignal" key
+intext:"onto" wallet solana seed
+intext:"opal" wallet
+intext:"opensea" api key
+intext:"optimism" op seed
+intext:"osmosis" dex seed
+intext:"password: HisakaTHAI09"
+intext:"password: Mssb691843"
+intext:"password: Nikoh_2021"
+intext:"password: gnanam137"
+intext:"password: sommylebs"
+intext:"paxful" p2p key
+intext:"paypal" client_id
+intext:"paypal.me"
+intext:"peach" bitcoin key
+intext:"peach" bitcoin lightning key
+intext:"persistence" seed
+intext:"petropower.com.my" "intranet" filetype:pdf
+intext:"phantom" local storage
+intext:"phantom" seed
+intext:"phoenix" wallet seed
+intext:"pillar" wallet
+intext:"pine" wallet
+intext:"pintu" id key
+intext:"pirate" chain arrr seed
+intext:"pirate" chain seed
+intext:"pldtdsl.net" "email password" ext:txt
+intext:"pokt" solana key
+intext:"poloniex" key
+intext:"polygon" zkevm seed
+intext:"portal" bridge key
+intext:"private_key" ext:pem
+intext:"private_key" ext:pem | ext:key
+intext:"probit" key
+intext:"projectId" firebase
+intext:"projectid" firebase
+intext:"pump" fun seed
+intext:"pump.fun" key
+intext:"pump.fun" | "raydium" | "jupiter" key
+intext:"pusher" key
+intext:"quicknode" solana key
+intext:"quidax" nigeria key
+intext:"rabby" wallet
+intext:"rainbow" wallet
+intext:"raptoreum" seed
+intext:"raspiblitz" seed
+intext:"raydium" amm seed
+intext:"raydium" key
+intext:"recaptcha" secret
+intext:"reku" id key
+intext:"remitano" p2p key
+intext:"robosats" key
+intext:"robosats" lightning key
+intext:"rocketpool" solana key
+intext:"ronin dojo" seed
+intext:"ronin" wallet seed
+intext:"rubic" finance key
+intext:"rune" vault seed
+intext:"s3.amazonaws.com" bucket
+intext:"safepal" s1
+intext:"safepal" seed
+intext:"safepal" solana seed
+intext:"salesforce" password
+intext:"samourai" dojo seed
+intext:"samourai" wallet
+intext:"satang" pro key
+intext:"scroll" zk seed
+intext:"secret" network seed
+intext:"secux" seed
+intext:"secux" v20
+intext:"seed phrase"
+intext:"seedsigner" seed
+intext:"sendgrid_api_key"
+intext:"sentinel" dvpn seed
+intext:"session.secret"
+intext:"sg." sendgrid
+intext:"sideshift" ai key
+intext:"simpleswap" key
+intext:"sk_live_" stripe
+intext:"sk_live_" | "pk_live_" stripe
+intext:"slack" webhook
+intext:"soketi" password
+intext:"solana" "keypair json"
+intext:"solana" "keypair json" | "id.json"
+intext:"solana" cli config
+intext:"solana" keypair json
+intext:"solana" private key
+intext:"solana" rpc endpoint
+intext:"solana" rpc key
+intext:"solana" secret key
+intext:"solana" stake account
+intext:"solana" validator key
+intext:"solana" vote account
+intext:"solana-program" keypair
+intext:"solana-test-validator"
+intext:"solflare" local storage
+intext:"solflare" seed
+intext:"sollet" seed
+intext:"solong" wallet seed
+intext:"sparrow" cold
+intext:"sparrow" wallet
+intext:"specter" diy
+intext:"specter" diy seed
+intext:"specter" qr
+intext:"speed" wallet seed
+intext:"square" access_token
+intext:"ssh-ed25519"
+intext:"ssh-rsa AAAAB3"
+intext:"ssh-rsa aaaab3"
+intext:"stack" wallet monero seed
+intext:"stargate" finance key
+intext:"stargaze" seed
+intext:"starknet" argent x key
+intext:"start9" embassy seed
+intext:"stealthex" key
+intext:"stealthx" key
+intext:"strike" api key
+intext:"sun" io key
+intext:"sun" token private key
+intext:"sunswap" key
+intext:"supabase" anon key
+intext:"swapspace" key
+intext:"swapuz" key
+intext:"swop" fi key
+intext:"symbiosis" finance key
+intext:"synapse" protocol key
+intext:"taiko" l2 seed
+intext:"tangem" seed
+intext:"telegram" bot token
+intext:"tencent" secretid
+intext:"thorchain" rune seed
+intext:"thorswap" key
+intext:"tokenary" seed
+intext:"tokenpocket" solana seed
+intext:"tokocrypto" key
+intext:"transportesolera.com" "intranet" "acceso"
+intext:"trezor" model t
+intext:"trezor" seed
+intext:"trezor" suite seed
+intext:"trocador" key
+intext:"trocat" key
+intext:"tron" private key
+intext:"tronlink" seed
+intext:"trust wallet" seed
+intext:"trust" wallet solana seed
+intext:"trust" wallet tron seed
+intext:"trx" address private key
+intext:"umbrel" seed
+intext:"unichain" op labs seed
+intext:"upbit" indonesia key
+intext:"username: THKWA01"
+intext:"username: alexandre"
+intext:"username: apple" intext:"password: apple1234"
+intext:"username: benson"
+intext:"username: bonggotnat"
+intext:"username: cindy.Allegretto"
+intext:"username: dowjai.chw"
+intext:"username: ellime"
+intext:"username: jan8236"
+intext:"username: jennifer"
+intext:"username: karen"
+intext:"username: mano"
+intext:"username: manogran"
+intext:"username: okabe"
+intext:"username: sitihajar"
+intext:"username: srijith"
+intext:"username: suhaida"
+intext:"username: valene1"
+intext:"username: winston"
+intext:"username: yudalaptop"
+intext:"valr" africa key
+intext:"venmo"
+intext:"venmo" @username
+intext:"verus" coin seed
+intext:"vonage" key
+intext:"vultr" api key
+intext:"wallet backup"
+intext:"wallet of satoshi" seed
+intext:"wallet.dat"
+intext:"wallet.dat" | "keystore.json"
+intext:"wasabi" coordinator key
+intext:"wasabi" wallet
+intext:"whirlpool" cli key
+intext:"whitebit" key
+intext:"wormhole" portal key
+intext:"wownero" seed
+intext:"x-api-key:"
+intext:"xmr" wallet seed
+intext:"xoxb-" slack
+intext:"xoxb-" slack"
+intext:"xy" finance key
+intext:"ya29." google
+intext:"yellowcard" africa key
+intext:"zap" wallet seed
+intext:"zcash" shielded seed
+intext:"zcash" transparent key
+intext:"zebedee" key
+intext:"zelle"
+intext:"zelle" email
+intext:"zephyr" protocol seed
+intext:"zerion" seed
+intext:"zipmex" key
+intext:"zksync" era key
+intext:"zora" network seed
+intext:"~/.config/solana/id.json"
+intitle:"Drupal" inurl:"/user/login"
+intitle:"Joomla! Administrator Login"
+intitle:"Login" "Username: admin"
+intitle:"cpanel" inurl:":2083"
+intitle:"index of" "Edge" "User Data"
+intitle:"index of" "Login Data"
+intitle:"index of" "outlook.pst"
+intitle:"index of" .env
+intitle:"index of" .env | backup | wallet
+intitle:"index of" backup
+intitle:"index of" wallet
+intitle:"login" inurl:"192.168.1.1"
+intitle:"phpmyadmin" inurl:":8080"
+intitle:"router" inurl:"192.168.0.1" intext:"password"
+intitle:"webcam" inurl:"10.0.0."
+inurl:"/.mozilla/firefox/" "key4.db"
+inurl:"/Account/Login" intext:"Username" intext:"Password"
+inurl:"/VMI/login.aspx"
+inurl:"/login.aspx" intitle:"Welcome"
+inurl:"/remote/login" "username" "password"
+inurl:"/wp-admin/" intitle:"Log In"
+inurl:"assist.perkeso.gov.my"
+inurl:"az3.ondemand.esker.com"
+inurl:"bpibizlink.com"
+inurl:"crmactiv/Account/Login"
+inurl:"ebiz.ril.com/irj/portal"
+inurl:"efps.bir.gov.ph"
+inurl:"eprs01.philhealth.gov.ph"
+inurl:"eps.mbsa.gov.my" "login"
+inurl:"eterminal.net.my"
+inurl:"ksr.logisoft.co.th"
+inurl:"ljk10.vertikaliti.com"
+inurl:"maximo/webclient/login/login.jsp"
+inurl:"ms1021.securen.net" intitle:"login"
+inurl:"myfuturejobs.gov.my" "auth"
+inurl:"mykkp.dosh.gov.my"
+inurl:"newemanifest.dagangnet.com.my"
+inurl:"procurementV2/page/myLogin.jsp"
+inurl:"ptptn.gov.my/gateway"
+inurl:"scm.ril.com/login.aspx"
+inurl:"shellcardsonline.com"
+inurl:"supplier-portal.volvo.com"
+inurl:"us.sso.covisint.com"
+inurl:"vendor.um.edu.my"
+inurl:"webedi.ter.co.th"
+inurl:.env "DB_PASSWORD"
+inurl:.env "db_password"
+inurl:/admin.php
+inurl:8080 intitle:"dashboard"
+inurl:admin/login
+inurl:backup intitle:"index of"
+inurl:config.php "DB_PASS"
+inurl:config.php "db_pass"
+inurl:cpanel
+inurl:go.th "e-service" "password"
+inurl:gov.my "login" | "log masuk"
+inurl:gov.ph "e-services" "username"
+inurl:gov.sg "staff portal"
+inurl:id_rsa | id_dsa | id_ed25519
+inurl:phpinfo.php
+inurl:phpmyadmin
+inurl:settings.py "SECRET_KEY"
+inurl:settings.py "secret_key"
+inurl:webmail
+inurl:wp-config.php.bak
+inurl:wp-config.php.bak | .env "DB_PASSWORD"
+inurl:wp-config.php.bak | wp-config.php~
+site:.es inurl:acceso-privado "contraseña"
+site:.hu "bejelentkezés" "jelszó"
+site:.my inurl:login filetype:aspx
+site:.ph "employee login" ext:php
+site:.pt inurl:entrar "palavra-passe"
+site:.sg inurl:corp_login "password"
+site:.th inurl:portal intitle:"login"
+site:controlc.com wallet
+site:hastebin.com private key
 site:pastebin.com password
 site:pastebin.com private key
 site:pastebin.com seed phrase
-site:ghostbin.co password
-site:controlc.com wallet
+site:pastebin.com | rentry.co | controlc.com password | seed | private_key
 site:rentry.co seed
-site:hastebin.com private key
-intext:"@gmail.com" ext:txt | ext:csv | ext:xlsx
-intext:"@yahoo.com" password
-intext:"@outlook.com" password
-intext:"ssh-rsa AAAB3" 
-intext:"ssh-ed25519"
-inurl:id_rsa | id_dsa | id_ed25519
-inurl:.bash_history
-inurl:.zsh_history
-inurl:.htpasswd
-inurl:web.config "connectionString"
-inurl:config.php "DB_PASS"
-inurl:settings.py "SECRET_KEY"
-inurl:app.config "SQLALCHEMY"
-intext:"X-API-KEY:"
-intext:"Authorization: Bearer"
-intext:"SendGrid API Key"
-intext:"SG." sendgrid
-intext:"twilio_sid"
-intext:"ACCOUNT_SID" twilio
-intext:"AUTH_TOKEN" twilio
-intext:"cloudinary://"
-intext:"mapbox" token
-intext:"s3.amazonaws.com" bucket
-inurl:s3:// | inurl:s3.amazonaws.com
-intext:"herokuapp.com" password
-intext:"railway.app" env
-intext:"vercel.app" env
-intext:"netlify" token
-intext:"supabase" anon key
-intext:"postgres://"
-intext:"mongodb+srv://"
-intext:"redis://"
-intext:"docker-compose.yml" password
-intext:"dockerhub" password
-intext:"npmjs" token
-intext:"pypi" token
-intext:"jwt" "eyJ"
-intext:"HS256" | "RS256"
-intext:"ssh2_auth_password"
-intext:"root@" ext:txt
-intext:"admin@127.0.0.1"
-intext:"x-api-key"
-intext:"binance_api"
-intext:"coinbase" secret
-intext:"kraken" key
-intext:"shopify" private app
-intext:"X-Shopify-Access-Token"
-intext:"woocommerce_api_key"
-intext:"magento" password
-intext:"prestashopencart" password
-intext:"opencart" "oc_" password
-intext:"laravel" "APP_KEY" base64
-intext:"sanctum" token
-intext:"passport" laravel
-intext:"firebase" config
-intext:"apiKey" firebase
-intext:"projectId" firebase
-intext:"android" keystore
-intext:"ios" p12
-intext:"keystore" password
-intext:"signingReport"
-intext:"debug.keystore"
-intext:"gradle.properties"
-intext:"local.properties"
-intext:"flutter" key
-intext:"expo" token
-intext:"onesignal" key
-intext:"pusher" key
-intext:"soketi" password
-intext:"pusher_app_key"
-intext:"vonage" key
-intext:"nexmo" key
-intext:"alibaba" accessKeyId
-intext:"tencent" secretId
-intext:"digitalocean" token
-intext:"linode" token
-intext:"vultr" api key
-intext:"cloudflare_api_token"
-intext:"cloudflare_api_key"
-intext:"CF_AUTH_KEY"
-intext:"bunnycdn" key
-intext:"fastly" token
-intext:"akamai" token
-intext:"paypal" client_id
-intext:"braintree" private_key
-intext:"square" access_token
-intext:"recaptcha" secret
-intext:"hcaptcha" secret
-intext:"discord" webhook
-intext:"webhook_url"
-intext:"slack" webhook
-intext:"telegram" bot token
-intext:"botfather"
-intext:"aws_session_token"
-intext:"aws_secret_access_key" "LIVE"
-intext:"sendgrid_api_key"
-intext:"mailgun" key
-intext:"ses" smtp
-intext:"mailchimp" api key
-intext:"hubspot" api key
-intext:"salesforce" password
-intext:"okta" token
-intext:"auth0" secret
-intext:"jwt_secret"
-intext:"session.secret"
-intext:"cookie_secret"
-intext:"encryption_key"
-intext:"cipher" key
-intext:"paypal.me"
-intext:"cash.app"
-intext:"venmo"
-intext:"zelle"
-intext:"bitcoin address" "private key"
-intext:"ethereum" "0x" "private key"
-intext:"solana" secret key
-intext:"phantom" seed
-intext:"metamask" seed
-intext:"ledger" seed
-intext:"trezor" seed
-intext:"electrum" seed
-intext:"bitcoin core" wallet
-intext:"multibit" wallet
-intext:"armory" wallet
-intext:"monero" view key
-intext:"dash" private key
-intext:"litecoin" seed
-intext:"dogecoin" seed
-intext:"cardano" seed
-intext:"polkadot" seed
-intext:"cosmos" seed
-intext:"terra" seed
-intext:"avax" seed
-intext:"bsc" seed
-intext:"polygon" seed
-intext:"arbitrum" seed
-intext:"optimism" seed
-intext:"base" seed
-intext:"zksync" seed
-intext:"starknet" seed
-intext:"scroll" seed
-intext:"linea" seed
-intext:"mantle" seed
-intext:"blast" seed
-intext:"mode" seed
-intext:"taiko" seed
-intext:"zora" seed
-intext:"unichain" seed
-intext:"berachain" seed
-intext:"hyperliquid" key
-intext:"pump.fun" key
-intext:"raydium" key
-intext:"jupiter" aggregator key
-intext:"solana" program deployed
-intext:"anchor" program
-intext:"rust" solana program
-intext:"serum" dex key
-intext:"openbook" dex
-intext:"phoenix" dex
-intext:"drift" protocol key
-intext:"marginfi" key
-intext:"kamino" key
-intext:"solend" key
-intext:"tulip" protocol
-intext:"mango" markets key
-intext:"zeta" markets
-intext:"01" protocol
-intext:"tensor" bid key
-intext:"hadeswap" key
-intext:"magic eden" api key
-intext:"opensea" api key
-intext:"blur" eth key
-intext:"x2y2" key
-intext:"looksrare" key
-intext:"foundation" app key
-intext:"zora" api
-intext:"sound" protocol key
-intext:"superrare" key
-intext:"rarible" key
-intext:"nft" mint key
-intext:"solsea" key
-intext:"magiceden" launchpad key
-intext:"metaplex" candy machine
-intext:"sugar" candy
-intext:"hashlips"
-intext:"thirdweb" key
-intext:"alchemy" key
-intext:"infura" key
-intext:"moralis" key
-intext:"quicknode" key
-intext:"ankr" key
-intext:"getblock" key
-intext:"chainstack" key
-intext:"lava" network key
-intext:"pokt" network
-intext:"allthatnode" key
-intext:"blastapi" key
-intext:"blockdaemon" key
-intext:"figment" key
-intext:"lido" key
-intext:"rocketpool" key
-intext:"coinbase" cloud key
-intext:"binance" cloud
-intext:"kraken" cloud
-intext:"bitfinex" key
-intext:"bybit" key
-intext:"okx" key
-intext:"gate.io" key
-intext:"kucoin" key
-intext:"huobi" key
-intext:"mexc" key
-intext:"bitget" key
-intext:"bitmart" key
-intext:"bitstamp" key
-intext:"crypto.com" key
-intext:"gemini" key
-intext:"bitflyer" key
-intext:"wazirx" key
-intext:"zebpay" key
-intext:"coinDCX" key
-intext:"indian" exchange key
-intext:"upbit" key
-intext:"bithumb" key
-intext:"korbit" key
-intext:"indodax" key
-intext:"tokocrypto" key
-intext:"pintu" key
-intext:"reku" key
-intext:"bitcoin.co.id" key
-intext:"luno" key
-intext:"valr" key
-intext:"altcointrader" key
-intext:"ovex" key
-intext:"yellowcard" key
-intext:"busha" key
-intext:"quidax" key
-intext:"binance" africa key
-intext:"paxful" key
-intext:"localbitcoins" key
-intext:"noones" key
-intext:"remitano" key
-intext:"binance" p2p key
-intext:"paypal" stealth
-intext:"cashapp" $cashtag
-intext:"venmo" @username
-intext:"zelle" email
-intext:"revolatility" trading key
-intext:"deribit" key
-intext:"phemex" key
-intext:"bitmex" key
-intext:"bybit" testnet key
-intext:"okx" demo key
-intext:"binance" futures key
-intext:"coin" perpetual
-intext:"hyperliquid" perp key
-intext:"drift" perp
-intext:"gmx" key
-intext:"perp" protocol key
-intext:"dydx" key
-intext:"apex" protocol
-intext:"clearpool" key
-intext:"aave" key
-intext:"compound" key
-intext:"makerdao" key
-intext:"curve" key
-intext:"balancer" key
-intext:"uniswap" v4 key
-intext:"sushiswap" key
-intext:"pancakeswap" key
-intext:"quickswap" key
-intext:"traderjoe" key
-intext:"spookyswap" key
-intext:"spiritswap" key
-intext:"beethoven" key
-intext:"kyber" key
-intext:"1inch" key
-intext:"paraswap" key
-intext:"cowswap" key
-intext:"matcha" key
-intext:"opensea" seaport
-intext:"blur" bid
-intext:"x2y2" order
-intext:"nftx" vault
-intext:"sudoswap" key
-intext:"nft20" key
-intext:"zora" v3
-intext:"manifold" key
-intext:"rarible" v2
-intext:"foundation" relay
-intext:"sound" protocol mint
-intext:"catalog" works
-intext:"artblocks" key
-intext:"async" art key
-intext:"superrare" v2
-intext:"knownorigin" key
-intext:"hashmasks" key
-intext:"cryptopunks" key
-intext:"bored ape" key
-intext:"pudgy" penguins key
-intext:"azuki" key
-intext:"doodles" key
-intext:"moonbirds" key
-intext:"clonex" key
-intext:"meebits" key
-intext:"coolcats" key
-intext:"goblin" town key
-intext:"invisible" friends key
-intext:"world of women" key
-intext:"cyberkongz" key
-intext:"lazy lions" key
-intext:"bAYC" mutant key
-intext:"ens" eth name
-intext:"lens" protocol handle
-intext:"farcaster" key
-intext:"based" domain
-intext:"unstoppable" domains key
-intext:"coinbase" wallet seed
-intext:"trust wallet" seed
-intext:"atomic" wallet seed
-intext:"exodus" seed
-intext:"jaxx" seed
-intext:"guarda" seed
-intext:"coinomi" seed
-intext:"blockchain.com" wallet
-intext:"binance" wallet seed
-intext:"ledger live" seed
-intext:"trezor" suite seed
-intext:"electrum" wallet seed
-intext:"wasabi" wallet
-intext:"samourai" wallet
-intext:"sparrow" wallet
-intext:"specter" diy
-intext:"coldcard" seed
-intext:"bitbox" seed
-intext:"keystone" seed
-intext:"tangem" seed
-intext:"ellipal" seed
-intext:"safePal" seed
-intext:"cypherock" seed
-intext:"bitfi" seed
-intext:"keepkey" seed
-intext:"coolwallet" seed
-intext:"secux" seed
-intext:"gridplus" lattice
-intext:"foundation" passport
-intext:"blockstream" jade
-intext:"krux" wallet
-intext:"seedSigner" seed
-intext:"specter" qr
-intext:"airgap" vault
-intext:"keystone" pro
-intext:"onekey" pro
-intext:"ngrave" zero
-intext:"bitlox" seed
-intext:"opal" wallet
-intext:"cobo" vault
-intext:"archos" safe-t
-intext:"ellipal" titan
-intext:"d'cent" biometric
-intext:"safePal" s1
-intext:"secux" v20
-intext:"bitbox02" seed
-intext:"coldcard" mk4
-intext:"trezor" model t
-intext:"ledger" nano x
-intext:"blockstream" green
-intext:"bluewallet" seed
-intext:"greenaddress" seed
-intext:"pine" wallet
-intext:"sparrow" cold
-intext:"caravan" multisig
-intext:"lily" wallet
-intext:"fully nodl" seed
-intext:"myetherwallet" keystore
-intext:"metamask" vault data
-intext:"rabby" wallet
-intext:"zerion" seed
-intext:"rainbow" wallet
-intext:"argent" wallet
-intext:"pillar" wallet
-intext:"gnosis" safe
-intext:"ambire" wallet
-intext:"loopring" l2 key
-intext:"zksync" era key
-intext:"starknet" argent x key
-intext:"immutable" x key
-intext:"ronin" wallet seed
-intext:"harmony" one seed
-intext:"avalanche" core seed
-intext:"fantom" opera seed
-intext:"polygon" zkevm seed
-intext:"arbitrum" nova seed
-intext:"optimism" op seed
-intext:"base" coinbase l2 seed
-intext:"scroll" zk seed
-intext:"linea" consenSys seed
-intext:"zora" network seed
-intext:"blast" l2 seed
-intext:"mode" network seed
-intext:"taiko" l2 seed
-intext:"unichain" op labs seed
-intext:"berachain" bera seed
-intext:"hyperliquid" l1 seed
-intext:"pump" fun seed
-intext:"raydium" amm seed
-intext:"jupiter" aggregator seed
-intext:"solana" rpc key
-intext:"helius" rpc key
-intext:"quicknode" solana key
-intext:"alchemy" solana key
-intext:"getblock" solana key
-intext:"ankr" solana key
-intext:"lava" solana key
-intext:"pokt" solana key
-intext:"allthatnode" solana key
-intext:"chainstack" solana key
-intext:"blockdaemon" solana key
-intext:"figment" solana key
-intext:"lido" solana key
-intext:"rocketpool" solana key
-intext:"solana" validator key
-intext:"solana" vote account
-intext:"solana" stake account
-intext:"solana" rpc endpoint
-intext:"solana" private key
-intext:"solana" keypair json
-intext:"id.json" solana
-intext:"~/.config/solana/id.json"
-intext:"solana" cli config
-intext:"anchor" keys
-intext:"cargo" toml solana
-intext:"solana-program" keypair
-intext:"solana-test-validator"
-intext:"phantom" local storage
-intext:"solflare" local storage
-intext:"backpack" wallet seed
-intext:"solong" wallet seed
-intext:"sollet" seed
-intext:"mathwallet" solana seed
-intext:"trust" wallet solana seed
-intext:"exodus" solana seed
-intext:"coin98" solana seed
-intext:"safepal" solana seed
-intext:"tokenpocket" solana seed
-intext:"onto" wallet solana seed
-intext:"bitkeep" solana seed
-intext:"tronlink" seed
-intext:"tokenary" seed
-intext:"guarda" tron seed
-intext:"klever" wallet seed
-intext:"trust" wallet tron seed
-intext:"tron" private key
-intext:"trx" address private key
-intext:"sun" token private key
-intext:"just" swap key
-intext:"sunswap" key
-intext:"sun" io key
-intext:"bt.io" key
-intext:"poloniex" key
-intext:"gate" io key
-intext:"mexc" global key
-intext:"bitget" global key
-intext:"lbank" key
-intext:"bigone" key
-intext:"bitrue" key
-intext:"ascendex" key
-intext:"probit" key
-intext:"whitebit" key
-intext:"bitkub" key
-intext:"zipmex" key
-intext:"bitazza" key
-intext:"satang" pro key
-intext:"bitkub" th key
-intext:"binance" th key
-intext:"upbit" indonesia key
-intext:"indodax" key
-intext:"tokocrypto" key
-intext:"pintu" id key
-intext:"reku" id key
-intext:"bitcoin.co.id" key
-intext:"luno" africa key
-intext:"valr" africa key
-intext:"busha" nigeria key
-intext:"quidax" nigeria key
-intext:"yellowcard" africa key
-intext:"paxful" p2p key
-intext:"noones" p2p key
-intext:"remitano" p2p key
-intext:"localmonero" key
-intext:"bisq" key
-intext:"hodlhodl" key
-intext:"peach" bitcoin key
-intext:"robosats" key
-intext:"haveno" key
-intext:"monero" p2p key
-intext:"cake" wallet seed
-intext:"stack" wallet seed
-intext:"feather" wallet seed
-intext:"monerujo" seed
-intext:"my monero" seed
-intext:"xmr" wallet seed
-intext:"monero" view key
-intext:"monero" spend key
-intext:"monero" address private key
-intext:"wownero" seed
-intext:"pirate" chain seed
-intext:"conceal" seed
-intext:"zephyr" protocol seed
-intext:"raptoreum" seed
-intext:"kaspa" seed
-intext:"ergo" seed
-intext:"nervos" ckb seed
-intext:"alephium" seed
-intext:"ironfish" seed
-intext:"nym" mixnet key
-intext:"nym" nymnet key
-intext:"nym" operator key
-intext:"hush" seed
-intext:"zcash" shielded seed
-intext:"zcash" transparent key
-intext:"pirate" chain arrr seed
-intext:"komodo" seed
-intext:"verus" coin seed
-intext:"flux" seed
-intext:"kadena" kda seed
-intext:"secret" network seed
-intext:"cosmos" hub seed
-intext:"osmosis" dex seed
-intext:"juno" network seed
-intext:"stargaze" seed
-intext:"injective" protocol seed
-intext:"celestia" seed
-intext:"dydx" cosmos seed
-intext:"akash" network seed
-intext:"persistence" seed
-intext:"sentinel" dvpn seed
-intext:"axelar" seed
-intext:"wormhole" portal key
-intext:"layerzero" key
-intext:"stargate" finance key
-intext:"synapse" protocol key
-intext:"allbridge" key
-intext:"multichain" key
-intext:"cbridge" celer key
-intext:"hop" protocol key
-intext:"across" protocol key
-intext:"connext" network key
-intext:"chainport" key
-intext:"portal" bridge key
-intext:"symbiosis" finance key
-intext:"rubic" finance key
-intext:"xy" finance key
-intext:"li" finance key
-intext:"anyswap" key
-intext:"mayachain" seed
-intext:"thorchain" rune seed
-intext:"thorswap" key
-intext:"rune" vault seed
-intext:"bitcoin" lightning node key
-intext:"lnd" wallet seed
-intext:"phoenix" wallet seed
-intext:"breez" wallet seed
-intext:"muun" wallet seed
-intext:"wallet of satoshi" seed
-intext:"strike" api key
-intext:"cash" app lightning key
-intext:"chivo" wallet seed
-intext:"blink" wallet seed
-intext:"aqua" wallet seed
-intext:"speed" wallet seed
-intext:"zebedee" key
-intext:"zap" wallet seed
-intext:"alby" wallet seed
-intext:"lnbits" key
-intext:"btcpay" server key
-intext:"lndhub" key
-intext:"raspiblitz" seed
-intext:"umbrel" seed
-intext:"my node" seed
-intext:"start9" embassy seed
-intext:"ronin dojo" seed
-intext:"specter" diy seed
-intext:"samourai" dojo seed
-intext:"whirlpool" cli key
-intext:"joinmarket" key
-intext:"wasabi" coordinator key
-intext:"boltz" exchange key
-intext:"fixedfloat" key
-intext:"sideshift" ai key
-intext:"simpleswap" key
-intext:"changelly" key
-intext:"stealthx" key
-intext:"godex" key
-intext:"changehero" key
-intext:"letsexchange" key
-intext:"exch" cx key
-intext:"trocat" key
-intext:"swapspace" key
-intext:"changenow" key
-intext:"simpleswap" key
-intext:"stealthex" key
-intext:"swapuz" key
-intext:"swop" fi key
-intext:"fixedfloat" key
-intext:"majestic" bank key
-intext:"trocador" key
-intext:"nonkyc" exchange key
-intext:"bisq" 2 key
-intext:"robosats" lightning key
-intext:"peach" bitcoin lightning key
-intext:"haveno" monero key
-intext:"localmonero" key
-intext:"local" monero key
-intext:"monero" p2p key
-intext:"cakewallet" monero seed
-intext:"monerujo" monero seed
-intext:"stack" wallet monero seed
-intext:"feather" wallet monero seed
-intext:"my monero" com seed
-intext:"xmr" wallet seed
-intext:"monero" view key
-intext:"monero" spend key
-intext:"monero" address private key
-intext:"wownero" seed
-intext:"pirate" chain seed
-intext:"conceal" seed
-intext:"zephyr" protocol seed
-intext:"raptoreum" seed
-intext:"kaspa" seed
-intext:"ergo" seed
-intext:"nervos" ckb seed
-intext:"alephium" seed
-intext:"ironfish" seed
-intext:"nym" mixnet key
-intext:"nym" nymnet key
-intext:"nym" operator key
-intext:"hush" seed
-intext:"zcash" shielded seed
-intext:"zcash" transparent key
-intext:"pirate" chain arrr seed
-intext:"komodo" seed
-intext:"verus" coin seed
-intext:"flux" seed
-intext:"kadena" kda seed
-intext:"secret" network seed
-intext:"cosmos" hub seed
-intext:"osmosis" dex seed
-intext:"juno" network seed
-intext:"stargaze" seed
-intext:"injective" protocol seed
-intext:"celestia" seed
-intext:"dydx" cosmos seed
-intext:"akash" network seed
-intext:"persistence" seed
-intext:"sentinel" dvpn seed
-intext:"axelar" seed
-intext:"wormhole" portal key
-intext:"layerzero" key
-intext:"stargate" finance key
-intext:"synapse" protocol key
-intext:"allbridge" key
-intext:"multichain" key
-intext:"cbridge" celer key
-intext:"hop" protocol key
-intext:"across" protocol key
-intext:"connext" network key
-intext:"chainport" key
-intext:"portal" bridge key
-intext:"symbiosis" finance key
-intext:"rubic" finance key
-intext:"xy" finance key
-intext:"anyswap" key
-intext:"mayachain" seed
-intext:"thorchain" rune seed
-intext:"thorswap" key
-intext:"rune" vault seed

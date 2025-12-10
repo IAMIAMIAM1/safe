@@ -7,9 +7,134 @@ import os
 import sqlite3
 import hashlib
 import json
+import requests
 from bs4 import BeautifulSoup
 from typing import Optional, List, Dict, Any
 import logging
+import string
+from curl_cffi import requests as curl_requests
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import undetected_chromedriver as uc
+from urllib.parse import quote
+
+# --- ULTIMATE 2025 BYPASS CONFIGURATION ---
+
+# 1. User-Agent Generation
+UA_2025 = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1",
+    "Mozilla/5.0 (Android 14; Mobile; rv:131.0) Gecko/131.0 Firefox/131.0",
+]
+
+def fake_chrome_ua():
+    chrome_versions = [f"13{random.randint(0,2)}.0.0.0" for _ in range(5)]
+    windows_builds = ["Win64; x64", "WOW64"]
+    return f"Mozilla/5.0 (Windows NT 10.0; {random.choice(windows_builds)}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{random.choice(chrome_versions)} Safari/537.36"
+
+class StealthHeaders:
+    def __init__(self):
+        self.ua_pool = UA_2025 + [fake_chrome_ua() for _ in range(10)]
+        self.accept_lang = ["en-US,en;q=0.9", "en-GB,en;q=0.8", "de-DE,de;q=0.9", "fr-FR,fr;q=0.9"]
+        self.encoding = ["gzip, deflate, br", "gzip, deflate"]
+    
+    def get(self):
+        return {
+            'User-Agent': random.choice(self.ua_pool),
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': random.choice(self.accept_lang),
+            'Accept-Encoding': random.choice(self.encoding),
+            'Referer': random.choice(['https://www.google.com/', 'https://www.bing.com/', 'https://duckduckgo.com/', '']),
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Cache-Control': 'max-age=0',
+            'Sec-CH-UA': f'"Google Chrome";v="{random.randint(130, 132)}", "Chromium";v="{random.randint(130, 132)}", "Not=A?Brand";v="24"',
+            'Sec-CH-UA-Mobile': '?0',
+            'Sec-CH-UA-Platform': '"Windows"',
+        }
+
+# 2. Proxy Rotation
+class ProxyRotator:
+    def __init__(self, refresh_interval: int = 300):
+        self.current_pia_proxy = None
+        self.last_refresh = 0
+        self.refresh_interval = refresh_interval
+        self.proxy_modes = ["pia_sticky", "pia_random", "tor"]
+        self.tor_proxy = "socks5://127.0.0.1:9050"
+
+    def _generate_pia_session(self) -> str:
+        sess_id = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
+        return f"http://user-superGrok_Y6dbJ-sessid-{sess_id}:SuperAgent12345@proxy.piaproxy.com:7000"
+
+    def get_proxy(self, mode: str = "pia_sticky") -> dict:
+        if mode == "pia_random":
+            proxy_url = self._generate_pia_session()
+            return {'http': proxy_url, 'https': proxy_url}
+        if mode == "tor":
+            return {'http': self.tor_proxy, 'https': self.tor_proxy}
+        # Default to "pia_sticky"
+        now = time.time()
+        if not self.current_pia_proxy or (now - self.last_refresh > self.refresh_interval):
+            self.current_pia_proxy = self._generate_pia_session()
+            self.last_refresh = now
+        return {'http': self.current_pia_proxy, 'https': self.current_pia_proxy}
+
+# 3. Cookie Management
+class CookieManager:
+    def __init__(self):
+        self.cookie_jars = [
+            {"CONSENT": "YES+cb.20250301-00-p0.en+FX+123", "SOCS": "CAISEwgDEgk0ODE3Mjg1MjQaAmVuIAEaBgiA8vqdBg", "AEC": "Ae3random123", "__Secure-1PSID": "g.random123"},
+            # Add more real cookie jars here
+        ]
+
+    def _generate_fresh_google_cookies(self):
+        def random_string(length):
+            return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+        
+        return [
+            {"name": "CONSENT", "value": f"YES+srp.gws-{time.strftime('%Y%m%d')}-0-RC2"},
+            {"name": "1P_JAR", "value": time.strftime("%Y-%m-%d-%H")},
+            {"name": "NID", "value": f"520={random_string(60)}"},
+            {"name": "AEC", "value": f"Ae3{random_string(30)}"},
+        ]
+
+    def refresh_cookies(self, session):
+        session.cookies.clear(domain=".google.com")
+        for c in self._generate_fresh_google_cookies():
+            session.cookies.set(c["name"], c["value"], domain=".google.com")
+        time.sleep(random.uniform(0.5, 2.0))
+
+# 4. Undetected ChromeDriver
+def get_undetected_driver():
+    options = uc.ChromeOptions()
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-plugins-discovery")
+    options.add_argument("--start-maximized")
+    
+    driver = uc.Chrome(options=options, use_subprocess=True, version_main=132)
+    driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => false});")
+    driver.execute_script('''Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3, 4, 5]});''')
+    driver.execute_script('''Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});''')
+    
+    return driver
+
+
+
+
+
 
 # Setup basic logging for SearchCache
 logger = logging.getLogger(__name__)
@@ -306,67 +431,76 @@ class SearchCache:
             logger.error(f"Failed to get cache stats: {e}")
             return {"error": str(e)}
 
-# --- Provided WebContentFetcher Class ---
-class WebContentFetcher:
-    """Utility class for fetching web content."""
 
-    @staticmethod
-    def fetch_content_sync(url: str, timeout: int = 10) -> Optional[str]:
-        """
-        Synchronously fetch and extract the main content from a webpage.
-        This is a synchronous version of the provided async function.
-
-        Args:
-            url: The URL to fetch content from
-            timeout: Request timeout in seconds
-
-        Returns:
-            Extracted text content or None if fetching fails
-        """
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        }
-
-        try:
-            response = requests.get(url, headers=headers, timeout=timeout)
-
-            if response.status_code != 200:
-                logger.warning(
-                    f"Failed to fetch content from {url}: HTTP {response.status_code}"
-                )
-                return None
-
-            soup = BeautifulSoup(response.text, "html.parser")
-
-            for script in soup(["script", "style", "header", "footer", "nav"]):
-                script.extract()
-
-            text = soup.get_text(separator="\n", strip=True)
-
-            text = " ".join(text.split())
-            return text[:10000] if text else None
-
-        except Exception as e:
-            logger.warning(f"Error fetching content from {url}: {e}")
-            return None
 
 # --- Advanced Dork Crawler Logic ---
 class AdvancedDorkCrawler:
-    # --- SerpAPI Configuration ---
-    # IMPORTANT: Replace with your actual SerpAPI key or set as environment variable
-    SERPAPI_KEY = "941c74017814139a848a0f0684c3dec9d6e7f58c1fcbb1198a76bf9c92f30db8" 
-
-    def __init__(self, search_engine: str = "google"):
+    def __init__(self, search_engine: str = "google", serpapi_key: str = None):
         self.search_engine = search_engine.lower()
-        self.headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"}
+        self.serpapi_key = serpapi_key
         self.cache = SearchCache()
+        self.proxy_rotator = ProxyRotator()
+        self.headers_manager = StealthHeaders()
+        self.cookie_manager = CookieManager()
+        self.driver = None  # For undetected-chromedriver
 
-    def _perform_google_search(self, dork_query: str) -> List[Dict[str, Any]]:
-        search_url = f"https://www.google.com/search?q={requests.utils.quote(dork_query)}"
-        r = requests.get(search_url, headers=self.headers, timeout=15)
-        r.raise_for_status()
+    def _make_stealth_request(self, url):
+        session = curl_requests.Session()
+        
+        # 1. Rotate proxy
+        session.proxies = self.proxy_rotator.get_proxy(mode="pia_random")
+        
+        # 2. Rotate UA + headers
+        session.headers.update(self.headers_manager.get())
+        
+        # 3. Rotate cookies
+        self.cookie_manager.refresh_cookies(session)
+        
+        # 4. Spoof TLS fingerprint
+        session.impersonate = random.choice(["chrome124", "chrome130", "safari_ios_17", "edge130"])
+        
+        # 5. Random delay
+        time.sleep(random.uniform(4, 11))
+        
+        return session.get(url, timeout=20)
+
+    def _fetch_content(self, url: str, timeout: int = 10) -> Optional[str]:
+        """
+        Synchronously fetch and extract the main content from a webpage.
+        """
+        try:
+            r = self._make_stealth_request(url)
+            r.raise_for_status()
+        except Exception as e:
+            logger.warning(f"Failed to fetch content from {url}: {e}")
+            return None
 
         soup = BeautifulSoup(r.text, "html.parser")
+
+        for script in soup(["script", "style", "header", "footer", "nav"]):
+            script.extract()
+
+        text = soup.get_text(separator="\\n", strip=True)
+
+        text = " ".join(text.split())
+        return text[:10000] if text else None
+
+    def _perform_google_search(self, dork_query: str) -> List[Dict[str, Any]]:
+        search_url = f"https://www.google.com/search?q={quote(dork_query)}"
+        try:
+            r = self._make_stealth_request(search_url)
+            r.raise_for_status()
+        except Exception as e:
+            logger.error(f"Error during Google search for '{dork_query}': {e}")
+            # Fallback to selenium
+            if self.driver is None:
+                self.driver = get_undetected_driver()
+            self.driver.get(search_url)
+            r_text = self.driver.page_source
+            soup = BeautifulSoup(r_text, "html.parser")
+        else:
+            soup = BeautifulSoup(r.text, "html.parser")
+
         results = []
         for g in soup.find_all('div', class_='g'):
             link_tag = g.find('a')
@@ -396,10 +530,14 @@ class AdvancedDorkCrawler:
         return external_results
 
     def _perform_duckduckgo_search(self, dork_query: str) -> List[Dict[str, Any]]:
-        search_url = f"https://duckduckgo.com/html/?q={requests.utils.quote(dork_query)}"
-        r = requests.get(search_url, headers=self.headers, timeout=15)
-        r.raise_for_status()
-
+        search_url = f"https://duckduckgo.com/html/?q={quote(dork_query)}"
+        try:
+            r = self._make_stealth_request(search_url)
+            r.raise_for_status()
+        except Exception as e:
+            logger.error(f"Error during DuckDuckGo search for '{dork_query}': {e}")
+            return []
+        
         soup = BeautifulSoup(r.text, "html.parser")
         results = []
         for result_div in soup.find_all('div', class_='result'):
@@ -424,22 +562,23 @@ class AdvancedDorkCrawler:
         return external_results
 
     def _perform_serpapi_search(self, dork_query: str) -> List[Dict[str, Any]]:
-        if not self.SERPAPI_KEY:
+        if not self.serpapi_key:
             logger.error("SerpAPI key is not configured.")
             return []
 
-        # SerpAPI uses 'q' for query and 'engine' for search engine (Google, Bing, DuckDuckGo, etc.)
-        # We will use Google as the underlying engine for SerpAPI queries by default.
         params = {
-            "api_key": self.SERPAPI_KEY,
-            "engine": "google",  # Using Google as the backend for SerpAPI
+            "api_key": self.serpapi_key,
+            "engine": "google",
             "q": dork_query,
             "hl": "en",
             "gl": "us"
         }
 
         try:
-            response = requests.get("https://serpapi.com/search", params=params, timeout=30)
+            # SERP API is a paid service, so we don't need to use the full stealth suite here.
+            # A standard requests session is sufficient.
+            session = requests.Session()
+            response = session.get("https://serpapi.com/search", params=params, timeout=30)
             response.raise_for_status()
             data = response.json()
 
@@ -479,29 +618,10 @@ class AdvancedDorkCrawler:
             logger.error(f"Unsupported search engine: {self.search_engine}")
             return []
 
-        try:
-            results = search_function(dork_query)
-            # SerpAPI already provides filtered results, so no extra filtering is typically needed here
-            if self.search_engine != "serpapi":
-                external_results = []
-                seen_urls = set()
-                for res in results:
-                    url = res.get('url')
-                    if url and url not in seen_urls:
-                        # Specific Google filtering (already in _perform_google_search) is not needed here
-                        # For other direct engines, minimal filtering
-                        external_results.append(res)
-                        seen_urls.add(url)
-                results = external_results # Update results to be filtered version
-            
-            self.cache.put(dork_query, results, self.search_engine)
-            return results
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Error during search for '{dork_query}' on {self.search_engine}: {e}")
-            return []
-        except Exception as e:
-            logger.error(f"An unexpected error occurred during search for '{dork_query}': {e}")
-            return []
+        results = search_function(dork_query)
+        
+        self.cache.put(dork_query, results, self.search_engine)
+        return results
 
 
     def crawl_and_cache_content(self, url: str) -> Optional[str]:
@@ -509,18 +629,14 @@ class AdvancedDorkCrawler:
         content_hash = hashlib.md5(url.encode()).hexdigest()
         
         # Check cache for raw content, not just search results
-        # Assuming the content is stored directly as a string under a 'content:' prefixed key
         cached_content_entry = self.cache.get(f"content:{content_hash}", "web_content")
         if cached_content_entry:
             logger.info(f"Using cached web content for '{url}'")
-            # The cached_content_entry is a list of dicts from SearchCache.get
-            # We stored [{"url": url, "content": content}]
             if cached_content_entry and isinstance(cached_content_entry, list) and len(cached_content_entry) > 0:
                 return cached_content_entry[0].get('content')
             return None
 
-
-        content = WebContentFetcher.fetch_content_sync(url)
+        content = self._fetch_content(url)
         if content:
             self.cache.put(f"content:{content_hash}", [{"url": url, "content": content}], "web_content")
         return content
@@ -557,7 +673,7 @@ class AdvancedDorkCrawler:
                 else:
                     logger.info(f"  Failed to crawl cache content from: {result['cached_url']}")
 
-            time.sleep(random.uniform(1, 3)) # Delay between crawling each result URL
+
 
         logger.info(f"--- Advanced search completed for DORK: '{dork_keyword}' on {self.search_engine.upper()} ---")
 
@@ -581,9 +697,11 @@ if __name__ == "__main__":
     if not valid_engines:
         print(f"No valid search engines specified. Supported: {', '.join(supported_engines)}")
         sys.exit(1)
+    
+    # It's better to get the serpapi_key from an environment variable
+    serpapi_key = os.getenv("SERPAPI_KEY", "941c74017814139a848a0f0684c3dec9d6e7f58c1fcbb1198a76bf9c92f30db8")
 
     for engine in valid_engines:
-        crawler = AdvancedDorkCrawler(search_engine=engine)
+        crawler = AdvancedDorkCrawler(search_engine=engine, serpapi_key=serpapi_key)
         for dork_query in keywords:
             crawler.run_dork_crawl(dork_query)
-            time.sleep(random.uniform(3, 7)) # Delay between each dork keyword and engine combination

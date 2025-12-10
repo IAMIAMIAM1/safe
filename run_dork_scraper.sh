@@ -10,8 +10,8 @@ while IFS= read -r dork_keyword; do
         continue
     fi
 
-    # Execute the advanced dork crawler for the current keyword across all specified engines
-    python3 advanced_dork_crawler.py "$SEARCH_ENGINES" "$dork_keyword"
+    # Execute the ultimate dork crawler for the current keyword across all specified engines
+    .venv/bin/python3 ultimate_dork_crawler.py "$dork_keyword"
     echo ""
     
     # Add a longer delay between each dork keyword to prevent rate limiting across engines
