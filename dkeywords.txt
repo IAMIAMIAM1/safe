@@ -1,26 +1,4 @@
- [
-    "intext:\"DB_PASSWORD\" ext:env",
-    "intext:\"private_key\" ext:pem",
-    "intext:\"BEGIN RSA PRIVATE KEY\"",
-    "intext:\"api_key\" | \"secret_key\"",
-    "inurl:wp-config.php.bak",
-    "intext:\"wallet.dat\"",
-    "intext:\"seed phrase\"",
-    "intext:\"AWS_ACCESS_KEY_ID\"",
-    "intext:\"ssh-rsa AAAAB3\"",
-    "filetype:sql \"password\"",
-    "inurl:backup intitle:\"index of\"",
-    "intitle:\"index of\" .env",
-    "intext:\"@gmail.com\" ext:txt",
-    "intext:\"xoxb-\" slack",
-    "intext:\"sk_live_\" stripe",
-    "intext:\"ghp_\" github",
-    "intext:\"EAAG\" facebook",
-    "inurl:phpinfo.php",
-    "intext:\"X-API-KEY:\"",
-    "intext:\"wallet backup\"",
-    "intext:\"keystore.json\"",
-    intext:"DB_PASSWORD" ext:env
+intext:"DB_PASSWORD" ext:env
 intext:"DB_USERNAME" ext:env
 intext:"MYSQL_ROOT_PASSWORD" ext:env | ext:yml
 intext:"AWS_ACCESS_KEY_ID" ext:env | ext:yml | ext:json
